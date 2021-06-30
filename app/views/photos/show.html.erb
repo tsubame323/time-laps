@@ -1,0 +1,64 @@
+    <div class="cont">
+
+        <div id="photoCard">
+            <div class="card-body">
+            <%= image_tag(@photo.image.url, id:"photo", alt: "image") %>
+            
+
+                <% if current_user == @photo.user %>
+                <div class="">
+                    <%= link_to '写真削除', folder_photo_path(@folder, @photo), method: :delete, data: { confirm: "You sure?" }, id:"deletePhoto", class: 'btn btn-danger btn-sm text-right mt-0' %>
+                </div>
+                <% end %>
+                <p>撮影日:<%= @photo.date %></p>
+                <p class="">投稿者:<%= @photo.user.name %></p>
+            </div>
+        
+ 
+
+    <div class="comForm">
+
+<!--コメントフォーム-->
+        <% if logged_in? %>
+        <%= form_with model: [@folder, @photo, @comment], local: true do |f| %>
+        <div id="commentForm">
+            <%= f.text_field :content, placeholder: 'コメントを投稿する', rows: 5, id:"commentFormContent" %>
+            <%= f.submit '投稿', id:"commentButton" %>
+        </div>
+        <% end %>
+
+        <% else %>
+        <div>
+            <p>ユーザー登録してコメントを投稿しよう。</p>
+            <button type="button" class="btn btn-outline-primary"><%= link_to 'アカウント作成', signup_path %></button>
+            <button type="button" class="btn btn-outline-primary"><%= link_to 'ログイン', login_path %></button>
+        </div>
+        <% end %>
+        
+        
+        <div class="come">
+            <table id="commentTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="come">Comment</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <% @comments.each do |comment| %>
+                <tbody>
+                    <tr>
+                        <td><div><%= comment.user.name %></div></td>
+                        <td id="commentCoontent"><div><%= comment.content %></div></td>
+                        <td><% if current_user == comment.user %><%= link_to '削除', folder_photo_comment_path(@folder, @photo, comment), method: :delete %><% end %></td>
+                    </tr>
+                </tbody>
+                <% end %>
+
+            </table>
+            <%= paginate @comments %>
+        </div>
+<!---->
+</div>
+    </div>
+</div>

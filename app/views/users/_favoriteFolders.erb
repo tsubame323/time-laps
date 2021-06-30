@@ -1,0 +1,45 @@
+
+<% if logged_in? %>
+<!-- お気に入り -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="label1">お気に入り一覧</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+<!-- お気に入り -->
+   
+                <% @favoriteFolders.each do |folder| %>
+<div class="folderCardFav">
+    <div>
+        <% @photo = folder.photos.first %>
+        <% if @photo.nil? %>
+        <%= image_tag("no-image.png", class: "folderThumbnail2", alt: "noimage") %>
+        <% else %>
+        <%= image_tag(@photo.image.url, class: "folderThumbnail2", alt: "image") %>
+        <% end %>
+
+    </div>
+    <div id="folderInformation">
+        <p id="folderBadge" class="badge badge-secondary">☆<%= folder.addlikes.count %></p>
+        <h4 class=""><%= link_to folder.title, folder %></h4>
+        <h6 class="">投稿者:<%= link_to folder.user.name, user_path(folder.user) %></h6>
+    </div>
+
+
+</div>
+<% end %>
+<!--　-->
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<% end %>
+<!-- -->

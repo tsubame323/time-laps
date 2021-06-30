@@ -1,0 +1,25 @@
+<div class="cont">
+    <div id="userProfiel">
+        <h1 id="userName"><%= @user.name %></h1>
+        <div id="iine">
+            <p>いいねした数☆<%= @favoCount %></p>
+            <p>いいねされた数☆<%= @favCount %></p>
+
+        </div>
+        <% if current_user == @user %>
+        <%= link_to 'LogOut', logout_path, method: :delete, class:"logout" %>
+        <% end %>
+    </div>
+
+    
+    <h3><%= @user.name %>様の投稿一覧</h3>
+
+
+
+
+
+<div>
+    <%= render 'folders/folders', folders: @folders %>
+
+</div>
+</div>

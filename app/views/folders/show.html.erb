@@ -1,0 +1,74 @@
+<!--フォルダ情報-->
+<div class="cont">
+    <div id="folderDetails">
+        <div id="folderTitle">
+            <h1 class="folTitle"><%= @folder.title %></h1>
+            <div>
+                <p>作成者:<%= @folder.user.name %></p>
+                <div>
+                    <!--お気に入りボタン-->
+                    <div class="animated FAV image-gallery__item" id="like_<%= @folder.id %>">
+                        <%= render "favorites/like_button", folder: @folder %>
+                    </div>
+                    <!---->
+                    <!--フォルダ削除-->
+                    <% if current_user == @folder.user %>
+                    <button id="folderDelete">
+                        <%= link_to "フォルダ削除", @folder, method: :delete, data: { confirm: "You sure?" }, class: '' %>
+                    </button>
+                    <% end %>
+                    <!---->
+                </div>
+            </div>
+        </div>
+
+        <div id="folderButton">
+
+
+
+
+            <div class="folContent">
+                <p><%= @folder.content %></p>
+
+
+
+            </div>
+
+
+
+            <!--投稿フォーム-->
+            <% if current_user == @folder.user %>
+            <div class="slideBox">
+                <div class="slideButton upBotton">
+                    画像を追加しましょう▽
+                </div>
+                <div class="slideNone">
+                    <%= form_with model: [@folder, @photo], local: true do |f| %>
+                    <div class="form-group">
+                        <%= f.file_field :image, class: "form-control-file" %>
+                        <%= f.label :date, '撮影日' %>
+                        <%= f.date_field :date, class: "form-control-file" %>
+                        <%= f.submit '写真追加' %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+            <% end %>
+            <!---->
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <%= render "photos/photos", photos: @photos %>
+</div>

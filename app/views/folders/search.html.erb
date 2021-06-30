@@ -1,0 +1,34 @@
+<div class="cont">
+        <div class="tabs">
+        <ul class="tabs-menu">
+            <li class="tab1">
+                <%= link_to '更新日順', folders_path, class: "nav-link" %>
+            </li>
+            <li class="tab2">
+                <%= link_to 'いいね順', fav_folders_path, class: "nav-link" %>
+            </li>
+            <li class="tab3">
+                <%= link_to '投稿数順', lotsPost_folders_path, class: "nav-link" %>
+            </li>
+            <li class="tab4Active">
+                検索
+            </li>
+        </ul>
+
+        <div>
+
+           <div class="searchTab">
+                <%= form_with method: :get, remote: true do |f| %>
+                <%= f.text_field :title %>
+                <%= f.submit :search %>
+                <% end %>
+            </div>
+            
+                <div class="seachKekka">
+<%= render "toppages/searchFolders", folder: @searchFolder %>
+    </div>
+
+        </div>
+
+        </div>
+    </div>

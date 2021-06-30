@@ -1,0 +1,47 @@
+<!--ログイン中-->
+<% if logged_in? %>
+
+<header class="header">
+    <div id="dad">
+    <h1>
+        <a class="" href="/">定点観測サイト</a>
+    </h1>
+   
+   <button id="folderCreateButton"><a class="nav-link" data-toggle="modal" data-target="#modal2">定点フォルダ<br>作成</a></button>
+   
+    </div>
+    <nav class="menu-container animated">
+        <ul class="menu">
+            <li class="menu-item"><%= link_to 'MyPage', user_path(current_user) %></li>
+            <li class="menu-item"><a class="nav-link" data-toggle="modal" data-target="#modal1">Favorites</a></li>
+            <li class="menu-item"><%= link_to 'Gallery', folders_path, class: "nav-link" %></li>
+            <!-- <li class="menu-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li> -->
+        </ul>
+    </nav>
+</header>
+
+
+<!--ログアウト中-->
+<% else %>
+
+<header>
+    <div id="dad">
+    <h1>
+        <a class="" href="/">定点観測SNS</a>
+    </h1>
+
+            </div>
+
+
+
+        <nav class="menu-container animated">
+            <ul class="menu">
+                <li class="menu-item"><%= link_to 'Gallery', folders_path, class: "nav-link" %></li>
+                <li class="menu-item"><%= link_to 'CreateAccount', signup_path, class: "nav-link" %></li>
+                <li class="menu-item"><%= link_to 'Login', login_path, class: "nav-link" %></li>
+            </ul>
+        </nav>
+</header>
+
+
+<% end %>

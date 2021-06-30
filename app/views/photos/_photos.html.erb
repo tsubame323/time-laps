@@ -1,0 +1,9 @@
+<% @photos.each do |photo| %>
+<div class="photoBox">
+<%= image_tag(photo.image.url, class: 'img-fluid', alt: "image") %>
+<div>
+<p>撮影日:<%= photo.date %></p>
+    <button type="button" class="btn btn-outline-primary"><%= link_to 'コメントを閲覧/投稿する',"/folders/#{@folder.id}/photos/#{photo.id}" %></button>
+</div>
+</div>
+<% end %>

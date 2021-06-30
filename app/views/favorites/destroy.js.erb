@@ -1,0 +1,3 @@
+$("#like_<%= @folder.id %>").removeClass("pulse");
+$("#like_<%= @folder.id %>").html("<%= j(render "favorites/like_button", folder: @folder) %>");
+$("#like_<%= @folder.id %>").addClass("pulse");

@@ -1,0 +1,15 @@
+<% if logged_in? %>
+<% if current_user.favorites?(folder) %>
+
+<%= form_with(model: current_user.favorites.find_by(folder_id: @folder.id), remote: true, method: :delete) do |f| %>
+<%= hidden_field_tag :folder_id, @folder.id %>
+<button id="notFavButton">★<%= folder.addlikes.count %></button>
+<% end %>
+
+<% else %>
+<%= form_with(model: current_user.favorites.build, remote: true) do |f| %>
+<%= hidden_field_tag :folder_id, @folder.id %>
+    <button id="favButton">☆<%= folder.addlikes.count %></button>
+<% end %>
+<% end %>
+<% end %>

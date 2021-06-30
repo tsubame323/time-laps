@@ -1,0 +1,42 @@
+<% if logged_in? %>
+<!-- お気に入り -->
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="label1">フォルダ作成</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div calss="pent">
+            <div class="modal-body">
+                <!-- 作成 -->
+                <div class="bg-silver">
+                    <h3>写真用フォルダ作成</h3>
+                    <%= form_with(model: @folderBuild, local: true) do |f| %>
+
+                    <div class="yoko">
+                        <div id="createFolderForm">
+
+                            <%= f.text_area :title, id: 'titleForm', class: "input", placeholder: 'タイトル', rows: 1 %>
+                            <%= f.text_area :content, id: 'contentForm', class: "input", placeholder: '説明', rows: 3 %>
+
+                        </div>
+                        <%= f.submit '作成', id: 'folderCreateButton2', class: 'btn btn-primary btn-block px-3' %>
+
+                    </div>
+                    <% end %>
+                </div>
+
+
+
+                <!--　-->
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<% end %>
+<!-- -->

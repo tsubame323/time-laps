@@ -1,0 +1,54 @@
+<!--ログイン状態 -->
+<% if logged_in? %>
+<div class="">
+    <div class="topLogin">
+
+
+        <div class="topImages2">
+            <% @ranPhotos.each do |photo| %>
+            <%= image_tag(photo.image.url, class:"") %>
+            <% end %>
+        </div>
+        <div class="cont">
+            <%= render 'folders/folders', folders: @folders %>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!--ログインしてない状態 -->
+<% else %>
+<div class="topMobile">
+    <div class="topYo">
+        <div>
+            <h1 id="catchCopy">日常の定点観測。<br>身近な変化を共有しよう。</h1>
+            <div class="searchTab">
+                <%= form_with method: :get, remote: true do |f| %>
+                <%= f.text_field :title %>
+                <%= f.submit :search %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="seachKekka">
+<%= render "toppages/searchFolders", folder: @searchFolder %>
+    </div>
+
+
+
+    <div class="topImages">
+        <% @ranPhotos.first(4).each do |photo| %>
+        <%= link_to image_tag(photo.image.url, class:"topImage image-gallery__"), photo.folder, class:"topImage2" %>
+        <% end %>
+    </div>
+
+
+</div>
+
+
+<% end %>
+

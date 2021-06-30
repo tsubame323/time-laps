@@ -1,0 +1,38 @@
+<div>
+<div class="folder jscroll">
+    <div class="folderFlex">
+    <% folders.each do |folder| %>
+
+
+    <div class="folderCard">
+        <div class="folderIm">
+        <% @photo = folder.photos.last %>
+        <% if @photo.nil? %>
+        <%= image_tag("no-image.png", class: "folderThumbnail image-gallery__item", alt: "noimage") %>
+        <% else %>
+        <%= image_tag(@photo.image.url, class: "folderThumbnail image-gallery__item", alt: "image") %>
+        <% end %>
+   <p id="folderBadge" class="badge badge-secondary">☆<%= folder.addlikes.count %></p>
+   </div>
+        <div id="folderInformation" class="wrap">
+
+         
+            <h4 class="folderData"><%= link_to folder.title, folder, class:"folTitle" %></h4>
+            <h6 class="folderData">投稿者:<%= link_to folder.user.name, user_path(folder.user) %></h6>
+            <% if @photo.nil? %>
+            <% else %>
+            <p class="fontF">最終更新日<br><%= @photo.updated_at.strftime('%Y/%m/%d') %></p>
+            <% end %>
+        </div>
+
+
+    </div>
+
+    <% end %>
+</div>
+
+    <%= paginate @folders, class:"pageNate" %>
+ 
+</div>
+
+</div>
